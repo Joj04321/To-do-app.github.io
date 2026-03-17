@@ -26,6 +26,7 @@
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     padding: 48px 16px 80px;
   }
 
@@ -39,18 +40,168 @@
     pointer-events: none;
   }
 
-  .app { width: 100%; max-width: 640px; }
+  /* ───────────── LOGIN PAGE ───────────── */
+  #login-page {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    animation: fadeDown 0.6s ease both;
+  }
 
-  header { margin-bottom: 36px; animation: fadeDown 0.6s ease both; }
-  header h1 {
+  .login-logo {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 8vw, 3.5rem);
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .login-logo span { color: var(--accent); }
+
+  .login-tagline {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-bottom: 40px;
+  }
+
+  .login-card {
+    background: var(--surface);
+    border: 1px solid #2d2d32;
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .login-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  /* hint box */
+  .login-hint {
+    background: rgba(240,192,96,0.08);
+    border: 1px solid rgba(240,192,96,0.22);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.83rem;
+    color: #c8a84a;
+    line-height: 1.6;
+  }
+  .login-hint strong { color: var(--accent); }
+
+  .field-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .login-card input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid #2d2d32;
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.97rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .login-card input::placeholder { color: var(--muted); }
+  .login-card input:focus { border-color: var(--accent); }
+
+  .login-error {
+    background: rgba(240,80,60,0.1);
+    border: 1px solid rgba(240,80,60,0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: #f07060;
+    display: none;
+  }
+  .login-error.show { display: block; }
+
+  .btn-login {
+    width: 100%;
+    background: var(--accent);
+    color: #111;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 4px;
+  }
+  .btn-login:hover { background: #f5d080; transform: translateY(-1px); }
+  .btn-login:active { transform: translateY(1px); }
+
+  /* ───────────── APP PAGE ───────────── */
+  #app-page {
+    width: 100%;
+    max-width: 640px;
+    display: none;
+  }
+  #app-page.visible { display: block; }
+
+  .app-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .app-topbar h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 7vw, 3rem);
     font-weight: 900;
     line-height: 1;
     letter-spacing: -1px;
   }
-  header h1 span { color: var(--accent); }
-  header p { margin-top: 8px; color: var(--muted); font-size: 0.95rem; font-weight: 300; }
+  .app-topbar h1 span { color: var(--accent); }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .user-badge {
+    background: var(--surface);
+    border: 1px solid #2d2d32;
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 0.83rem;
+    color: var(--muted);
+  }
+  .user-badge strong { color: var(--accent); }
+
+  .btn-logout {
+    background: none;
+    border: 1px solid #2d2d32;
+    border-radius: 50px;
+    padding: 6px 14px;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.83rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-logout:hover { border-color: #f07060; color: #f07060; }
 
   /* Stats */
   .stats { display: flex; gap: 12px; margin-bottom: 24px; animation: fadeDown 0.6s 0.1s ease both; flex-wrap: wrap; }
@@ -127,11 +278,7 @@
     cursor: pointer;
   }
 
-  .datetime-hint {
-    font-size: 0.74rem;
-    color: var(--muted);
-    margin-top: -4px;
-  }
+  .datetime-hint { font-size: 0.74rem; color: var(--muted); margin-top: -4px; }
 
   .btn-add {
     background: var(--accent);
@@ -304,11 +451,46 @@
 </style>
 </head>
 <body>
-<div class="app">
-  <header>
+
+<!-- ═══════════════ LOGIN PAGE ═══════════════ -->
+<div id="login-page">
+  <div class="login-logo">Do<span>it</span></div>
+  <p class="login-tagline">Sign in to manage your tasks</p>
+
+  <div class="login-card">
+    <h2>Welcome back 👋</h2>
+
+    <!-- Hint box showing credentials -->
+    <div class="login-hint">
+      🔑 <strong>Demo credentials</strong><br>
+      Username: <strong>test</strong> &nbsp;|&nbsp; Password: <strong>test</strong>
+    </div>
+
+    <div>
+      <label class="field-label" for="login-username">Username</label>
+      <input id="login-username" type="text" placeholder="Enter username" autocomplete="username" />
+    </div>
+
+    <div>
+      <label class="field-label" for="login-password">Password</label>
+      <input id="login-password" type="password" placeholder="Enter password" autocomplete="current-password" />
+    </div>
+
+    <div class="login-error" id="login-error">❌ Incorrect username or password. Try again.</div>
+
+    <button class="btn-login" onclick="doLogin()">Sign In</button>
+  </div>
+</div>
+
+<!-- ═══════════════ APP PAGE ═══════════════ -->
+<div id="app-page">
+  <div class="app-topbar">
     <h1>Do<span>it</span></h1>
-    <p>Your tasks, beautifully organized.</p>
-  </header>
+    <div class="topbar-right">
+      <div class="user-badge">👤 <strong id="logged-user">test</strong></div>
+      <button class="btn-logout" onclick="doLogout()">Sign out</button>
+    </div>
+  </div>
 
   <div class="stats">
     <div class="stat"><strong id="stat-total">0</strong>Total</div>
@@ -317,7 +499,6 @@
     <div class="stat overdue-stat"><strong id="stat-overdue">0</strong>Overdue</div>
   </div>
 
-  <!-- Input card -->
   <div class="input-card">
     <input id="task-input" type="text" placeholder="What do you need to do?" maxlength="160" />
     <div class="input-row2">
@@ -352,30 +533,75 @@
 </div>
 
 <script>
-  let tasks = JSON.parse(localStorage.getItem('doit_tasks_v2') || '[]');
+  // ── Auth ──────────────────────────────────────────
+  const VALID_USER = 'test';
+  const VALID_PASS = 'test';
+
+  function doLogin() {
+    const user = document.getElementById('login-username').value.trim();
+    const pass = document.getElementById('login-password').value;
+    const err  = document.getElementById('login-error');
+
+    if (user === VALID_USER && pass === VALID_PASS) {
+      err.classList.remove('show');
+      sessionStorage.setItem('doit_user', user);
+      showApp(user);
+    } else {
+      err.classList.add('show');
+      document.getElementById('login-password').value = '';
+      document.getElementById('login-password').focus();
+    }
+  }
+
+  function doLogout() {
+    sessionStorage.removeItem('doit_user');
+    document.getElementById('app-page').classList.remove('visible');
+    document.getElementById('login-page').style.display = 'flex';
+    document.getElementById('login-username').value = '';
+    document.getElementById('login-password').value = '';
+    document.getElementById('login-error').classList.remove('show');
+  }
+
+  function showApp(username) {
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('app-page').classList.add('visible');
+    document.getElementById('logged-user').textContent = username;
+    render();
+  }
+
+  // Auto-login if session exists
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = sessionStorage.getItem('doit_user');
+    if (saved) { showApp(saved); }
+
+    // Allow Enter key on login form
+    ['login-username','login-password'].forEach(id => {
+      document.getElementById(id).addEventListener('keydown', e => {
+        if (e.key === 'Enter') doLogin();
+      });
+    });
+
+    document.getElementById('task-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') addTask();
+    });
+  });
+
+  // ── Tasks ──────────────────────────────────────────
+  let tasks = JSON.parse(localStorage.getItem('doit_tasks_v3') || '[]');
   let filter = 'all';
 
-  function save() { localStorage.setItem('doit_tasks_v2', JSON.stringify(tasks)); }
+  function save() { localStorage.setItem('doit_tasks_v3', JSON.stringify(tasks)); }
 
   function addTask() {
     const input   = document.getElementById('task-input');
     const tag     = document.getElementById('tag-select').value;
-    const dueDate = document.getElementById('due-date').value;  // "YYYY-MM-DD" or ""
-    const dueTime = document.getElementById('due-time').value;  // "HH:MM" or ""
+    const dueDate = document.getElementById('due-date').value;
+    const dueTime = document.getElementById('due-time').value;
     const text    = input.value.trim();
     if (!text) { input.focus(); return; }
 
-    tasks.unshift({
-      id: Date.now(),
-      text,
-      tag,
-      done: false,
-      dueDate,
-      dueTime,
-    });
-    save();
-    render();
-
+    tasks.unshift({ id: Date.now(), text, tag, done: false, dueDate, dueTime });
+    save(); render();
     input.value = '';
     document.getElementById('due-date').value = '';
     document.getElementById('due-time').value = '';
@@ -401,11 +627,10 @@
 
   function isOverdue(task) {
     if (task.done || !task.dueDate) return false;
-    const now = new Date();
     const due = task.dueTime
       ? new Date(task.dueDate + 'T' + task.dueTime)
       : new Date(task.dueDate + 'T23:59:59');
-    return due < now;
+    return due < new Date();
   }
 
   function formatDue(task) {
@@ -413,29 +638,26 @@
     const d     = new Date(task.dueDate + 'T00:00:00');
     const today = new Date(); today.setHours(0,0,0,0);
     const tom   = new Date(today); tom.setDate(today.getDate() + 1);
-
     let dayStr;
-    if (d.getTime() === today.getTime())     dayStr = 'Today';
-    else if (d.getTime() === tom.getTime())  dayStr = 'Tomorrow';
+    if (d.getTime() === today.getTime())    dayStr = 'Today';
+    else if (d.getTime() === tom.getTime()) dayStr = 'Tomorrow';
     else dayStr = d.toLocaleDateString('en-US', {
       month: 'short', day: 'numeric',
       year: d.getFullYear() !== today.getFullYear() ? 'numeric' : undefined
     });
-
     let timeStr = '';
     if (task.dueTime) {
       const [h, m] = task.dueTime.split(':').map(Number);
-      const ampm = h >= 12 ? 'PM' : 'AM';
-      timeStr = ` ${h % 12 || 12}:${String(m).padStart(2,'0')} ${ampm}`;
+      timeStr = ` ${h % 12 || 12}:${String(m).padStart(2,'0')} ${h >= 12 ? 'PM' : 'AM'}`;
     }
     return dayStr + timeStr;
   }
 
   function render() {
-    const list = document.getElementById('task-list');
-    const total      = tasks.length;
-    const done       = tasks.filter(t => t.done).length;
-    const overdueCt  = tasks.filter(t => isOverdue(t)).length;
+    const list      = document.getElementById('task-list');
+    const total     = tasks.length;
+    const done      = tasks.filter(t => t.done).length;
+    const overdueCt = tasks.filter(t => isOverdue(t)).length;
 
     document.getElementById('stat-total').textContent   = total;
     document.getElementById('stat-done').textContent    = done;
@@ -444,8 +666,8 @@
     document.getElementById('progress-bar').style.width = total ? (done/total*100)+'%' : '0%';
 
     let filtered = [...tasks];
-    if (filter === 'active')   filtered = tasks.filter(t => !t.done);
-    else if (filter === 'done')    filtered = tasks.filter(t => t.done);
+    if (filter === 'active')       filtered = tasks.filter(t => !t.done);
+    else if (filter === 'done')    filtered = tasks.filter(t =>  t.done);
     else if (filter === 'overdue') filtered = tasks.filter(t => isOverdue(t));
     else if (['work','personal','urgent','other'].includes(filter))
       filtered = tasks.filter(t => t.tag === filter);
@@ -477,19 +699,10 @@
   }
 
   function escHtml(s) {
-    return String(s)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  document.getElementById('task-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') addTask();
-  });
-
-  // Refresh overdue status every minute
   setInterval(render, 60000);
-
-  render();
 </script>
 </body>
 </html>
